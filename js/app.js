@@ -27,8 +27,8 @@ input.oninput = () => {
 }
 
 download.onclick = (e) => {
-    let link = "https://3d.dalvintech.app/downloadFiles/" + input.value;
-    
+    let link = "https://3d.dalvintech.app/downloadFiles/" + input.value.match(/(?<=VCONF).*/);
+
     if (input.value.length == inputLengthRequired) {
         fetch(link)
         .then((response) => response.json())
