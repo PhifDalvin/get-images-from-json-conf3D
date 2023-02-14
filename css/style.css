@@ -34,17 +34,30 @@ p {
     padding: 0;
 }
 
+main {
+    height: 100vh;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+}
+
 .container {
     display: flex;
-    gap: 20px;
+    gap: 1em;
     flex-flow: column nowrap;
     align-items: center;
     justify-content: center;
-    height: 90vh;
+    
 }
 
 #icon-title {
+    margin-top: 10px;
+    display: flex;
     font-size: 2em !important;
+    background-color: #333344;
+    color: white;
+    padding: 60px 10px;
+    border-radius: 100px;
 }
 
 #input-row {
@@ -54,11 +67,13 @@ p {
     align-items: center;
 }
 
-#input-row span {
-    color: forestgreen;
+#input-icon {
+    position: absolute;
     font-size: 2em !important;
+    margin-left: -1em;
     visibility: hidden;
 }
+
 
 #id-input {
     border-radius: 50px;
@@ -66,6 +81,10 @@ p {
     width: 50vw;
     height: 1.5em;
     font-size: 1.5em;
+}
+
+#id-input:focus {
+    outline: 1px solid blue;
 }
 
 #download {
@@ -94,3 +113,30 @@ span {
 #warning {
     color: crimson
 }
+
+#preview-row {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.preview-image {
+    border: 1px solid black;
+    width: 20%;
+}
+
+footer {
+    margin-top: 1rem;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+    padding: 1em;
+    color: white;
+    background-color: #333344;
+    text-align: center;
+ }
