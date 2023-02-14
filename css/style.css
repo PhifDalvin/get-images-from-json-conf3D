@@ -70,7 +70,7 @@ main {
 #input-icon {
     position: absolute;
     font-size: 2em !important;
-    margin-left: -1em;
+    margin-left: -1.2em;
     visibility: hidden;
 }
 
@@ -81,10 +81,7 @@ main {
     width: 50vw;
     height: 1.5em;
     font-size: 1.5em;
-}
-
-#id-input:focus {
-    outline: 1px solid blue;
+    outline: 1px solid black;
 }
 
 #download {

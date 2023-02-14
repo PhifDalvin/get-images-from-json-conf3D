@@ -1,6 +1,6 @@
 let input = document.getElementById("id-input");
 let inputIcon = document.getElementById("input-icon");
-let inputLengthRequired = 47;
+let inputLengthRequired = 52;
 let download = document.getElementById("download");
 let previewRow = document.getElementById("preview-row");
 
@@ -9,7 +9,7 @@ input.oninput = () => {
         inputOk();
         clearPreview();
         
-        let link = "https://3d.dalvintech.app/downloadFiles/" + input.value;
+        let link = "https://3d.dalvintech.app/downloadFiles/" + input.value.match(/(?<=VCONF).*/);
         fetch(link)
         .then((response) => response.json())
         .then((json) => {
@@ -97,6 +97,6 @@ function inputError() {
 
 function inputClear() {
     inputIcon.style.visibility = "hidden";
-    input.style.outline = "1px solid blue";
+    input.style.outline = "1px solid black";
 }
 
