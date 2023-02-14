@@ -16,27 +16,37 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.css" />
     
-    <script src="./js/app.js" defer></script>
+    <script defer src="./js/app.js"></script>
 </head>
 <body>
-    <div class="container">
-        <div id="icon-title">
-            <span class="material-symbols-rounded">data_object</span>
-            <span class="material-symbols-rounded">arrow_forward</span>
-            <span class="material-symbols-rounded">image</span>
+    <main>
+        <header></header>
+
+        <div class="container">
+            <div id="icon-title">
+                <span class="material-symbols-rounded">data_object</span>
+                <span class="material-symbols-rounded">arrow_forward</span>
+                <span class="material-symbols-rounded">image</span>
+            </div>
+            <h1>3DCONF ID to Image</h1>
+            <p><strong>Collez un ID d'une commande Configurateur 3D<br/>puis cliquez sur "Télécharger les images"</strong></p>
+            <div id="input-row">
+                <input id="id-input" type="text"  placeholder="9f614e42-6adc-40cb-a17a-1ae1c9eecbcd-2023-02-12" autofocus/>
+                <span id="input-icon" class="material-symbols-rounded">close</span>
+            </div>
+            <button id="download">
+                <span class="material-symbols-rounded">download</span>
+                Télécharger les images
+            </button>
+            <p id="warning">Pensez à autoriser le téléchargement de tous les fichiers<br />(lorsque vous téléchargez des fichiers pour la première fois)</p>
+            <div id="preview-row">
+
+            </div>
         </div>
-        <h1>JSON to Image Converter</h1>
-        <p><strong>Collez un ID d'une commande Configurateur 3D<br/>puis cliquez sur "Télécharger les images"</strong></p>
-        <div id="input-row">
-            <input id="id-input" type="text" placeholder="9f614e42-6adc-40cb-a17a-1ae1c9eecbcd-2023-02-12"/>
-            <!-- <span class="material-symbols-rounded">done</span> -->
-            <!-- <span class="material-symbols-rounded">cross</span> -->
-        </div>
-        <button id="download">
-            <span class="material-symbols-rounded">download</span>
-            Télécharger les images
-        </button>
-        <p id="warning">Pensez à autoriser le téléchargement de tous les fichiers (la première fois)</p>
-    </div>
+        
+        <footer>
+            <p>Made with</p><span class="material-symbols-rounded">favorite</span><p>by Tony & Phif</p>
+        </footer>
+    </main>
 </body>
 </html>
