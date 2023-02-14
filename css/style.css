@@ -9,6 +9,14 @@ html {
     background-color: antiquewhite;
 }
 
+.material-symbols-rounded {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 600,
+  'GRAD' 0,
+  'opsz' 48
+}
+
 a {
     color: inherit;
     text-decoration: none; 
@@ -18,33 +26,71 @@ ul {
     padding-left: 0;
 }
 
-.container {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+p {
+    text-align: center;
+    line-height: normal;
+    font-size: 1.5em;
+    margin: 0;
+    padding: 0;
 }
 
-#file-input-label {
+.container {
     display: flex;
+    gap: 20px;
+    flex-flow: column nowrap;
     align-items: center;
-    width: fit-content;
+    justify-content: center;
+    height: 90vh;
+}
+
+#icon-title {
+    font-size: 2em !important;
+}
+
+#input-row {
+    display: flex;
+    gap: 10px;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+
+#input-row span {
+    color: forestgreen;
+    font-size: 2em !important;
+    visibility: hidden;
+}
+
+#id-input {
+    border-radius: 50px;
+    padding: 20px;
+    width: 50vw;
+    height: 1.5em;
+    font-size: 1.5em;
+}
+
+#download {
+    font-size: 1.5em;
+    display: flex;
+    gap: 10px;
+    align-items: center;
     background-color: crimson;
     color: white;
     font-weight: bold;
     padding: 20px;
+    border: none;
     border-radius: 50px;
-    cursor: pointer;
     transition: background-color linear 0.2s;
 }
 
-#file-input-label:hover {
+span {
+    font-size: 1.5em !important;
+}
+
+#download:hover {
+    cursor: pointer;
     background-color: darkred;
 }
 
-#file-input {
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0;
+#warning {
+    color: crimson
 }

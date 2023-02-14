@@ -1,12 +1,17 @@
-let input = document.getElementById("file-input");
+let input = document.getElementById("id-input");
+let download = document.getElementById("download");
 
-input.onchange = (e) => {
-    let reader = new FileReader();
-    reader.onload = (e) => {
-        let json = JSON.parse(e.target.result);
+download.onclick = (e) => {
+    let link = "https://3d.dalvintech.app/downloadFiles/" + input.value;
+    
+    fetch(link)
+    .then((response) => response.json())
+    .then((json) => {
         getSrcAndSourceValues(json);
-    }
-    reader.readAsText(e.target.files[0]);
+    })
+    .catch(() => {
+        alert("L'ID que vous avez entrée est incorrecte ou n'existe pas.");
+    })
 }
 
 function getSrcAndSourceValues(obj) {
