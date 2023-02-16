@@ -3,20 +3,21 @@ let inputIcon = document.getElementById("input-icon");
 let inputLengthRequired = 52;
 let download = document.getElementById("download");
 let previewRow = document.getElementById("preview-row");
-let loader = document.getElementsByClassName("lds-dual-ring");
 
 input.oninput = () => {
     if (input.value.length == inputLengthRequired) {
         inputOk();
         clearPreview();
-        loader = new Loader();
+        let loader = new Loader();
         loader.create();
         let link = "https://3d.dalvintech.app/downloadFiles/" + input.value.match(/(?<=VCONF).*/);
         fetch(link)
         .then((response) => response.json())
         .then((json) => {
-            loader.remove()
+            loader.remove();
             getSrcAndSourceValues(json, previewImage);
+            let textProperties = getFontProperties(json);
+            previewText(textProperties);            
         })
     } else if (input.value.length == 0) {
         inputClear();
@@ -31,7 +32,7 @@ input.oninput = () => {
 
 download.onclick = (e) => {
     let link = "https://3d.dalvintech.app/downloadFiles/" + input.value.match(/(?<=VCONF).*/);
-
+    
     if (input.value.length == inputLengthRequired) {
         fetch(link)
         .then((response) => response.json())
@@ -61,6 +62,34 @@ function getSrcAndSourceValues(obj, callback, processedValues = new Set()) {
     }
 }
 
+function getFontProperties(obj) {
+    const fontPropertiesArray = [];
+    
+    function findProperties(obj) {
+        const fontProperties = {};
+        for (const key in obj) {
+            if (typeof obj[key] === 'object') {
+                findProperties(obj[key]); // recursive call
+            } else {
+                if (key === 'fontFamily' || key === 'fontStyle' || key === 'fontWeight' || key === 'text') {
+                    fontProperties[key] = obj[key];
+                }
+            }
+        }
+        if (Object.keys(fontProperties).length > 0) {
+            const hasUniqueProperty = fontPropertiesArray.every((props) => {
+                return !Object.keys(fontProperties).every((key) => props.hasOwnProperty(key) && props[key] === fontProperties[key]);
+            });
+            if (hasUniqueProperty) {
+                fontPropertiesArray.push(fontProperties);
+            }
+        }
+    }
+    
+    findProperties(obj);
+    return fontPropertiesArray;
+}
+
 function downloadImage(base64) {
     let link = document.createElement('a');
     link.href = base64;
@@ -75,6 +104,31 @@ function previewImage(base64) {
     previewImage.src = base64;
     previewImage.className = "preview-image";
     previewRow.appendChild(previewImage);
+}
+
+function previewText(texts) {
+    for (let i = 0; i < texts.length; i++) {
+        let textProperties = 
+        `<b>Texte :</b> 
+        <br/>
+        ${texts[i].text}
+        <br/><br/>
+        <b>Font :</b> 
+        <br/>
+        ${texts[i].fontFamily}
+        <br/><br/>
+        <b>Épaisseur :</b> 
+        <br/>
+        ${texts[i].fontWeight}
+        <br/><br/>
+        <b>Style :</b> 
+        <br/>
+        ${texts[i].fontStyle}`;
+        let previewText = document.createElement("div");
+        previewText.className = "preview-image";
+        previewText.innerHTML = textProperties;
+        previewRow.appendChild(previewText);
+    }
 }
 
 function clearPreview() {

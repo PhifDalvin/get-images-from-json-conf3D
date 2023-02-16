@@ -124,6 +124,11 @@ span {
     width: 20%;
 }
 
+.preview-text {
+    border: 1px solid black;
+    width: 20%;
+}
+
 footer {
     margin-top: 1rem;
     display: flex;
