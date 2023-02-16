@@ -16,7 +16,7 @@ input.oninput = () => {
         .then((json) => {
             loader.remove();
             getSrcAndSourceValues(json, previewImage);
-            let textProperties = getFontProperties(json);
+            let textProperties = getTextProperties(json);
             previewText(textProperties);            
         })
     } else if (input.value.length == 0) {
@@ -62,32 +62,32 @@ function getSrcAndSourceValues(obj, callback, processedValues = new Set()) {
     }
 }
 
-function getFontProperties(obj) {
-    const fontPropertiesArray = [];
+function getTextProperties(obj) {
+    const textPropertiesArray = [];
     
     function findProperties(obj) {
-        const fontProperties = {};
+        const textProperties = {};
         for (const key in obj) {
             if (typeof obj[key] === 'object') {
-                findProperties(obj[key]); // recursive call
+                findProperties(obj[key]);
             } else {
                 if (key === 'fontFamily' || key === 'fontStyle' || key === 'fontWeight' || key === 'text') {
-                    fontProperties[key] = obj[key];
+                    textProperties[key] = obj[key];
                 }
             }
         }
-        if (Object.keys(fontProperties).length > 0) {
-            const hasUniqueProperty = fontPropertiesArray.every((props) => {
-                return !Object.keys(fontProperties).every((key) => props.hasOwnProperty(key) && props[key] === fontProperties[key]);
+        if (Object.keys(textProperties).length > 0) {
+            const hasUniqueProperty = textPropertiesArray.every((props) => {
+                return !Object.keys(textProperties).every((key) => props.hasOwnProperty(key) && props[key] === textProperties[key]);
             });
             if (hasUniqueProperty) {
-                fontPropertiesArray.push(fontProperties);
+                textPropertiesArray.push(textProperties);
             }
         }
     }
     
     findProperties(obj);
-    return fontPropertiesArray;
+    return textPropertiesArray;
 }
 
 function downloadImage(base64) {
