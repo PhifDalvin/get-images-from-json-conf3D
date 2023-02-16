@@ -3,18 +3,21 @@ let inputIcon = document.getElementById("input-icon");
 let inputLengthRequired = 52;
 let download = document.getElementById("download");
 let previewRow = document.getElementById("preview-row");
+let loader = document.getElementsByClassName("lds-dual-ring");
 
 input.oninput = () => {
     if (input.value.length == inputLengthRequired) {
         inputOk();
         clearPreview();
-        
+        loader = new Loader();
+        loader.create();
         let link = "https://3d.dalvintech.app/downloadFiles/" + input.value.match(/(?<=VCONF).*/);
         fetch(link)
         .then((response) => response.json())
         .then((json) => {
+            loader.remove()
             getSrcAndSourceValues(json, previewImage);
-        });
+        })
     } else if (input.value.length == 0) {
         inputClear();
         clearPreview();
@@ -100,3 +103,16 @@ function inputClear() {
     input.style.outline = "1px solid black";
 }
 
+class Loader {
+    create() {
+        let loader = document.createElement("div");
+        loader.className = "lds-dual-ring";
+        previewRow.appendChild(loader);
+    }
+    remove() {
+        let loader = document.getElementsByClassName("lds-dual-ring");
+        for (let i = 0; i < loader.length; i++) {
+            loader[i].remove();
+        };
+    }
+}
