@@ -2,14 +2,16 @@ let input = document.getElementById("id-input");
 let inputIcon = document.getElementById("input-icon");
 let inputLengthRequired = 52;
 let download = document.getElementById("download");
+let openPdf = document.getElementById("open");
 let previewRow = document.getElementById("preview-row");
 
 input.oninput = () => {
     if (input.value.length == inputLengthRequired) {
         inputOk();
         clearPreview();
-        let loader = new Loader();
+        let loader = new Loader()
         loader.create();
+        
         let link = "https://3d.dalvintech.app/downloadFiles/" + input.value.match(/(?<=VCONF).*/);
         fetch(link)
         .then((response) => response.json())
@@ -17,7 +19,7 @@ input.oninput = () => {
             loader.remove();
             getSrcAndSourceValues(json, previewImage);
             let textProperties = getTextProperties(json);
-            previewText(textProperties);            
+            previewText(textProperties);
         })
     } else if (input.value.length == 0) {
         inputClear();
@@ -42,9 +44,22 @@ download.onclick = (e) => {
         .catch(() => {
             alert("L'ID que vous avez entrée est incorrecte ou n'existe pas.");
         })
+    } else {
+        alert("Veuillez entrer un ID de commande Configurateur 3D valide.")
     }
     
     inputCheck = true;
+}
+
+openPdf.onclick = () => {
+    let linkPdf = "https://3d.dalvintech.app/downloadPrintFile/" + input.value.match(/(?<=VCONF).*/);
+    if (input.value.length == inputLengthRequired) {
+        openPdf.href = linkPdf;
+    } else {
+        openPdf.href = "javascript:"
+        alert("Veuillez entrer un ID de commande Configurateur 3D valide.")
+    }
+    
 }
 
 function getSrcAndSourceValues(obj, callback, processedValues = new Set()) {

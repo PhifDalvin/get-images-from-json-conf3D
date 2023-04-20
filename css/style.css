@@ -84,6 +84,12 @@ main {
     outline: 1px solid black;
 }
 
+#buttons-row {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 20px;
+}
+
 #download {
     font-size: 1.5em;
     display: flex;
@@ -98,14 +104,33 @@ main {
     transition: background-color linear 0.2s;
 }
 
-span {
-    font-size: 1.5em !important;
-}
-
 #download:hover {
     cursor: pointer;
     background-color: darkred;
 }
+
+#open {
+    font-size: 1.5em;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    background-color: lightseagreen;
+    color: white;
+    font-weight: bold;
+    padding: 20px;
+    border: none;
+    border-radius: 50px;
+    transition: background-color linear 0.2s;
+}
+#open:hover {
+    cursor: pointer;
+    background-color: darkcyan;
+}
+
+span {
+    font-size: 1.5em !important;
+}
+
 
 #warning {
     color: crimson
